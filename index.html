@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动态GIF表情显示</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #000;
+        }
+        #gif-container {
+            width: 65%;
+            height: 65%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        #gif {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body>
+    <div id="gif-container">
+        <img id="gif" src="" alt="GIF表情">
+    </div>
+    <script>
+        const gifs = [
+            'gifs/emoji1.gif',
+            'gifs/emoji2.gif',
+            'gifs/emoji3.gif',
+			'gifs/emoji4.gif',
+			'gifs/emoji5.gif',
+            'gifs/emoji6.gif',
+            'gifs/emoji7.gif',
+			'gifs/emoji8.gif',
+			'gifs/emoji9.gif',
+            'gifs/emoji10.gif',
+            'gifs/emoji11.gif',
+			'gifs/emoji12.gif',
+			'gifs/emoji13.gif',
+            'gifs/emoji14.gif',
+            'gifs/emoji15.gif',
+			'gifs/emoji16.gif',
+			'gifs/emoji17.gif',
+            'gifs/emoji18.gif',
+            'gifs/emoji19.gif',
+			'gifs/emoji20.gif',
+			'gifs/emoji21.gif',
+            'gifs/emoji22.gif',
+            'gifs/emoji23.gif',
+			'gifs/emoji24.gif',
+			'gifs/emoji25.gif',
+            'gifs/emoji26.gif',
+            'gifs/emoji27.gif',
+			'gifs/emoji28.gif',
+			'gifs/emoji29.gif',
+			'gifs/emoji30.gif',
+			'gifs/emoji31.gif',
+			'gifs/emoji1.webp',
+			'gifs/emoji2.webp',
+			'gifs/emoji3.webp',
+			'gifs/emoji4.webp',
+			'gifs/emoji5.webp',
+			'gifs/emoji6.webp',
+			'gifs/emoji7.webp',
+			'gifs/emoji8.webp',
+			'gifs/emoji9.webp',
+			'gifs/emoji10.webp',
+			'gifs/emoji11.webp',
+			'gifs/emoji12.webp',
+            // 添加更多31的GIF文件路径
+        ];
+
+        const schedule = {
+            '08:00': 'gifs/emoji9.webp',
+            '12:00': 'gifs/emoji26.gif',
+            '22:00': 'gifs/emoji4.webp',
+            // 添加更多特定时间点的表情路径
+        };
+
+        function getRandomGif() {
+            const randomIndex = Math.floor(Math.random() * gifs.length);
+            return gifs[randomIndex];
+        }
+
+        function setGif(src) {
+            const gifElement = document.getElementById('gif');
+            gifElement.src = src;
+        }
+
+        function setRandomGif() {
+            setGif(getRandomGif());
+        }
+
+        function checkSchedule() {
+            const now = new Date();
+            const currentTime = now.toTimeString().slice(0, 5);
+            if (schedule[currentTime]) {
+                setGif(schedule[currentTime]);
+            }
+        }
+
+        document.getElementById('gif-container').addEventListener('dblclick', setRandomGif);
+
+        // 每分钟检查一次时间点
+        setInterval(checkSchedule, 60000);
+
+        // 初始化加载一个随机表情
+        setRandomGif();
+        // 立即检查时间点
+        checkSchedule();
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
